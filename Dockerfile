@@ -1,5 +1,6 @@
 FROM kennethreitz/pipenv:latest
 
+WORKDIR /app/src
 COPY . /app/src
 
 # see source.env
