@@ -42,10 +42,11 @@ def telegram_publish(text, media_type, media_url):
             print(err)
 
 def resolve_tweet(data):
-    twitter_url = 'https://twitter.com/{}/status/{}'.format(data['user']['screen_name'], data['id_str'])
     if 'retweeted_status' in data:
         data = data['retweeted_status']
-    
+
+    twitter_url = 'https://twitter.com/{}/status/{}'.format(data['user']['screen_name'], data['id_str'])
+
     text = ''
 
     if 'extended_tweet' in data:
@@ -115,9 +116,9 @@ def resolve_tweet(data):
                 media_replace = media['url']
 
     if media_type != '':
-        text = text.replace(media_replace, '\n[Twitter]({})'.format(twitter_url))
+        text = text.replace(media_replace, '\n{}'.format(twitter_url.replace('_', r'\_')))
     else:
-        text = text + '\n[Twitter]({})'.format(twitter_url)
+        text = text + '\n{}'.format(twitter_url.replace('_', r'\_'))
 
     return text, media_type, media_url
 
