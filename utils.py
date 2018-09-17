@@ -19,23 +19,30 @@ LOG = logging.getLogger(__name__)
 
 bot = telegram.Bot(token=env('TELEGRAM_BOT_TOKEN'))
 
-def telegram_publish(text, video=None):
+def telegram_publish(text, media_type, media_url):
     for x in env('TELEGRAM_BOT_GROUPS'):
         try:
             bot.send_message(
                 x,
                 text,
-                'Markdown'
+                'Markdown',
+                True # disable_web_page_preview 
             )
-            if video is not None:
+            if media_type == 'video' or media_type == 'gif':
                 bot.send_video(
                     x,
-                    video
+                    media_url
+                )
+            elif media_type == 'photo':
+                bot.send_photo(
+                    x,
+                    media_url
                 )
         except Exception as err:
             print(err)
 
 def resolve_tweet(data):
+    twitter_url = 'https://twitter.com/{}/status/{}'.format(data['user']['screen_name'], data['id_str'])
     if 'retweeted_status' in data:
         data = data['retweeted_status']
     
@@ -107,10 +114,10 @@ def resolve_tweet(data):
                         media_url = video['url']
                 media_replace = media['url']
 
-    if media_url and media_type == 'photo':
-        text = text.replace(media_replace, '\n[image]({})'.format(media_url.replace('_', r'\_')))
-    elif media_url and media_type != 'photo':
-        text = text.replace(media_replace, '')
+    if media_type != '':
+        text = text.replace(media_replace, '\n[Twitter]({})'.format(twitter_url))
+    else:
+        text = text + '\n[Twitter]({})'.format(twitter_url)
 
     return text, media_type, media_url
 
@@ -129,7 +136,6 @@ class StdOutListener(StreamListener):
 
         LOG.info(strftime("[%Y-%m-%d %H:%M:%S]", gmtime()) + " " +
                  data['user']['screen_name']+' twittered.')
-
         worthPosting = False
         for twitter_id in self.twitter_ids:
             if data['user']['id_str'] != twitter_id:
@@ -154,10 +160,7 @@ class StdOutListener(StreamListener):
             return True
 
         text, media_type, media_url = resolve_tweet(data)
-        if media_type == 'video' or media_type == 'gif':
-            Thread(target=telegram_publish, args=(text, media_url, )).start()
-        else:
-            Thread(target=telegram_publish, args=(text, )).start()
+        Thread(target=telegram_publish, args=(text, media_type, media_url)).start()
                    
         return True
 
