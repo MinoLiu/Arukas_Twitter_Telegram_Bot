@@ -50,6 +50,6 @@ docker-compose up -d
 ```
 
 ### Arukas
-* https://app.arukas.io 
-Need to register account and credit card
+* https://app.arukas.io  
+* **Need to register account and credit card**
 ![1](https://i.imgur.com/Nf6VncJ.png)
