@@ -52,4 +52,4 @@ docker-compose up -d
 ### Arukas
 * https://app.arukas.io 
 Need to register account and credit card
-![1](https://raw.githubusercontent.com/Sean2525/Arukas_Twitter_Telegram_Bot/master/img/1.png)
+![1](https://i.imgur.com/Nf6VncJ.png)
