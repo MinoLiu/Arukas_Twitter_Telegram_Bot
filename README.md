@@ -8,7 +8,7 @@ A Telegram bot that forwards Tweets at Arukas
 ## Usage
 ### Config
 ``` env
-# Twitter
+# Twitter https://apps.twitter.com/
 export TWITTER_CONSUMER_KEY=
 export TWITTER_CONSUMER_SECRET=
 export TWITTER_ACCESS_TOKEN=
@@ -20,6 +20,7 @@ export TWITTER_ACCESS_TOKEN_SECRET=
 export TWITTER_IDS=
 
 # Forwarding setting
+# must be True or False
 export includeReplyToUser=False
 export includeRetweet=False
 export includeUserReply=False
