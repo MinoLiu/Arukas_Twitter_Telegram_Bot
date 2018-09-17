@@ -4,5 +4,14 @@ services:
   bot:
     build: .
     restart: always
-    env_file:
-      - ./source.env
+    environment:
+      - TWITTER_CONSUMER_KEY=
+      - TWITTER_CONSUMER_SECRET=
+      - TWITTER_ACCESS_TOKEN=
+      - TWITTER_ACCESS_TOKEN_SECRET=
+      - TWITTER_IDS=
+      - TELEGRAM_BOT_TOKEN=
+      - TELEGRAM_BOT_GROUPS=
+      - includeReplyToUser=False
+      - includeRetweet=False
+      - includeUserReply=False
