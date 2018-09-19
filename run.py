@@ -1,20 +1,18 @@
-import telegram
 import logging
 import tweepy
-import sys
 from env import env
 from utils import StdOutListener, StdOutStream
 
 LOG = logging.getLogger(__name__)
 
-logging.basicConfig(
-    format='%(asctime)s - [%(levelname)s] %(name)s: %(message)s',
-    level=logging.INFO)
+logging.basicConfig(format='%(asctime)s - [%(levelname)s] %(name)s: %(message)s', level=logging.INFO)
+
 
 def auth_twitter():
     auth = tweepy.OAuthHandler(env('TWITTER_CONSUMER_KEY'), env('TWITTER_CONSUMER_SECRET'))
     auth.set_access_token(env('TWITTER_ACCESS_TOKEN'), env('TWITTER_ACCESS_TOKEN_SECRET'))
     return auth
+
 
 if __name__ == '__main__':
     auth = auth_twitter()
