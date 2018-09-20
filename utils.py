@@ -127,7 +127,7 @@ class StdOutListener(StreamListener):
             return True
 
         LOG.info(strftime("[%Y-%m-%d %H:%M:%S]", gmtime()) + " " + data['user']['screen_name'] + ' twittered.')
-        worthPosting = False
+
         for twitter_id in self.twitter_ids:
             if data['user']['id_str'] != twitter_id:
                 worthPosting = False
@@ -148,10 +148,8 @@ class StdOutListener(StreamListener):
             if not worthPosting:
                 continue
 
-        if not worthPosting:
-            return True
-        text, media_type, media_url = resolve_tweet(data)
-        telegram_publish(text, media_type, media_url)
+            text, media_type, media_url = resolve_tweet(data)
+            telegram_publish(text, media_type, media_url)
 
         return True
 
