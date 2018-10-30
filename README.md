@@ -1,13 +1,15 @@
 # Arukas_Twitter_Telegram_Bot
-[![Docker hub](https://dockerbuildbadges.quelltext.eu/status.svg?organization=sean2525&repository=arukas_twitter_telegram_bot)](https://hub.docker.com/r/sean2525/arukas_twitter_telegram_bot/builds/)
-[![license:mit](https://img.shields.io/badge/license-mit-blue.svg)](https://opensource.org/licenses/MIT)
+
+[![Docker Build Status](https://img.shields.io/docker/build/sean2525/arukas_twitter_telegram_bot.svg?style=popout)](https://hub.docker.com/r/sean2525/arukas_twitter_telegram_bot/builds/) [![MicroBadger Size](https://img.shields.io/microbadger/image-size/sean2525/arukas_twitter_telegram_bot.svg?style=popout)](https://hub.docker.com/r/sean2525/arukas_twitter_telegram_bot/tags/) [![license:mit](https://img.shields.io/badge/license-mit-blue.svg)](https://opensource.org/licenses/MIT)
 
 A Telegram bot that forwards Tweets at Arukas
 ![0](https://i.imgur.com/qcgbW6Y.gif)
 
 ## Usage
+
 ### Config
-``` env
+
+```env
 # Twitter https://apps.twitter.com/
 export TWITTER_CONSUMER_KEY=
 export TWITTER_CONSUMER_SECRET=
@@ -28,7 +30,7 @@ export includeUserReply=False
 # Telegram
 export TELEGRAM_BOT_TOKEN=
 
-# Bind chats can be multiple 
+# Bind chats can be multiple
 # ex:
 # export TELEGRAM_BOT_GROUPS=-43223,340423,418230
 # Q: How to find chat_id?
@@ -37,7 +39,8 @@ export TELEGRAM_BOT_GROUPS=
 ```
 
 ### Bash
-``` bash
+
+```bash
 vim source.env # Fill it up
 source source.env
 pipenv install
@@ -45,13 +48,15 @@ pipenv run python run.py
 ```
 
 ### docker-compose
-``` bash
+
+```bash
 vim docker-compose.yml # Fill it up
 docker-compose up -d
 ```
 
 ### Arukas
-* https://app.arukas.io  
-* **Need to register account and credit card**
+
+- https://app.arukas.io
+- **Need to register account and credit card**
 
 ![1](https://i.imgur.com/Nf6VncJ.png)
